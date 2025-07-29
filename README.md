@@ -15,5 +15,3 @@ along with suggestions about why its good for you. It uses Claude Sonnet for rec
 
 <img width="3014" height="2664" alt="graphviz" src="https://github.com/user-attachments/assets/e5d563ab-eaf9-4d47-8a76-c5b4b137100c" />
 
-
-<img width="6026" height="3002" alt="graphviz (1)" src="https://github.com/user-attachments/assets/3ba7fcae-e325-4864-b1ee-ee1d5892e829" />
