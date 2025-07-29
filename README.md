@@ -13,3 +13,4 @@ along with suggestions about why its good for you. It uses Claude Sonnet for rec
 3. delete.py script will delete any title from the database.
 
 
+<img width="3014" height="2664" alt="graphviz" src="https://github.com/user-attachments/assets/e5d563ab-eaf9-4d47-8a76-c5b4b137100c" />
