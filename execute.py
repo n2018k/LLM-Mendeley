@@ -63,8 +63,8 @@ def get_mendeley_file_data(mendeley_id, api_key, ident=None):
 
 
 # Example usage:
-api_key = "give your Mendeley API KEY here"
-mendeley_id = "ADD your MENDELEY ID here"
+api_key = 'put api key here'
+mendeley_id = 'put mendeley project id here'
 mendeley_data = get_mendeley_data(mendeley_id, api_key)
 for dat in mendeley_data:
     if dat['name']=='need sorting':
@@ -75,7 +75,6 @@ file_data, title_data = [], []
 for f in files:
     one_id = f['id']
     data_file, data_doc = get_mendeley_file_data(mendeley_id, api_key, one_id)
-    print(data_file[0]['file_name'], data_doc['title'])
     file_data.append(data_file)
     title_data.append(data_doc)
 
@@ -105,6 +104,7 @@ def extract_main_body(text):
         ("Results", "Acknowledgement"),
         ("Results", "Acknowledgment"),
         ("Results", "Acknowledgments"),
+        ("Results", "References"),
     ]
 
     for start_marker, end_marker in markers:
@@ -117,8 +117,8 @@ def extract_main_body(text):
 
 # Example usage (assuming 'text' is already extracted from the PDF using PyPDF2):
 
-# add the path where pdfs are stored, user needs to provide this here
-path_prefix = "/Users/naman/Library/Application Support/Mendeley Reference Manager/userfiles/"
+# add the path where pdfs are stored
+path_prefix = 'path to mendeley userfiles'
 
 models = [ 
             "lbl/cborg-deepthought:latest",       # LBL-hosted Llama with custom system prompt
@@ -145,8 +145,8 @@ models = [
             "aws/llama-3.1-8b",
             "aws/command-r-plus-v1",
             "aws/command-r-v1",
-            "google/gemini-flash-exp",
-            "google/gemini-pro-preview"
+            "google/gemini-flash",
+            "google/gemini-pro"
         ]
 
 def summarize_text(text):
@@ -230,7 +230,6 @@ create_pdf_table()
 
 for data_file, title in zip(file_data, title_data):
     pdf_path = path_prefix + data_file[0]['id'] + '.pdf'   # Replace with your PDF file path
-    #pdf_path = pdf_prefix + data_file[0]['file_name']
 
     title = title['title']
 
@@ -263,6 +262,7 @@ for data_file, title in zip(file_data, title_data):
         
         summary = summarize_text(main_body_text)
         if summary:
+            print("summary", summary)
             insert_pdf_data(pdf_path, title, summary)
         else:
             print("Could not get any summary from the text, check model problem.")
